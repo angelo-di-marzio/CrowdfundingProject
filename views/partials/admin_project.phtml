@@ -1,0 +1,52 @@
+<div class="col-xs-12 col-md-10 col-md-offset-1">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Nom d'utilisateur</th>
+                <th>Projet</th>
+                <th>Nombre de signalement</th>
+                <th>Dernier signalement par</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+                foreach ($reports as $report){
+                    echo '<tr data-project-id="'.$report->getProject()->getId().'" data-username="'.$report->getProject()->getUser()->getUsername().'" data-id="'.$report->getId().'" data-title="'.$report->getProject()->getTitle().'">';
+                    echo '<th scope="row">'.$report->getProject()->getUser()->getUsername().'</th>';
+                    echo '<td>'.$report->getProject()->getTitle().'</td>';
+                    echo '<td>'.$report->getAmount().'</td>';
+                    echo '<td>'.$report->getUser()->getUsername().'</td>';
+                    echo '</tr>';
+                }
+            ?>
+         </tbody>
+     </table>
+</div>
+
+<!-- Modal project report details. -->
+<div class="modal fade" id="modalModerateProject" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="registerModalLabel">Modération de projet</h5>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-default">
+                    <div class="panel-heading" id="modalUsername"></div>
+                    <div class="panel-body" id="modalProject">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm" id="buttonView">Voir le projet</button>
+                <button type="button" class="btn btn-warning btn-sm" id="buttonDelete">Supprimer le projet</button>
+                <button type="button" class="btn btn-danger btn-sm" id="buttonBlock">Bloquer l'utilisateur</button>
+                <button type="button" class="btn btn-success btn-sm" id="buttonDismiss">Laisser le projet</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/dist/js/projectReport.js"></script>

@@ -1,0 +1,115 @@
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <div class="row">
+            <div class="col-md-6 col-xs-6">
+                Créé le: <?php echo $project->getDate(); ?> par <strong><?php echo $project->getUser()->getUsername(); ?></strong>
+            </div>
+            <div class="col-xs-6 col-md-6 text-right">
+                Expire le: <?php echo $project->getEndDate(); ?>
+            </div>
+          </div>
+          <div class="row">
+              <div class="col-xs-6">
+                  Vues: <?php echo $project->getView(); ?>
+              </div>
+              <div class="col-xs-6 text-right">
+                  <?php
+                      if (isset($_SESSION["user"]) && $_SESSION["user"]->getId() != $project->getUser()->getId())
+                          echo '<a class="btn btn-danger btn-xs btn-circle report-project" href="#" data-id="'.$project->getId().'"><span class="glyphicon glyphicon-share-alt"></span> Signaler</a>';
+                  ?>
+              </div>
+          </div>
+
+          <hr>
+    </div>
+    <!-- Basic informations for project -->
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1 text-center">
+        <h1><?php echo $project->getTitle(); ?></h1>
+        <hr>
+    </div>
+
+</div>
+<div class="row">
+    <!-- Description, image of project -->
+    <div class="col-xs-12 col-sm-10 col-sm-offset-0">
+        <?php
+
+            if(count($project->getFiles()) > 1)
+                require('views/partials/project_slideShow.phtml');
+            else if(count($project->getFiles()) == 1)
+                require('views/partials/project_img.phtml');
+        ?>
+    </div>
+
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+        <hr>
+            <p class="text-justify">
+                <?php echo $project->getContent(); ?>
+            </p>
+        <hr>
+    </div>
+</div>
+<div class="row text-center">
+    <!-- Actions: vote or stars -->
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+        <?php
+            require('views/partials/project_progress_bar.phtml');
+            ?>
+    </div>
+    <div class="col-md-4 col-xs-12 col-md-offset-1">
+        <?php
+
+            if($project->getType() == "idea")
+                require('views/partials/project_upvote.phtml');
+            elseif($project->getType() == "project")
+                require('views/partials/project_stars.phtml');
+        ?>
+    </div>
+    <div class="col-md-4 col-xs-12 col-md-offset-1">
+                <?php
+                    if (isset($_SESSION["user"]) && $_SESSION["user"]->getId() == $project->getUser()->getId())
+                        echo '<a href="/edition/'.$project->getId().'" class="btn btn-info btn-sm" role="button">Editer</a>';
+                ?>
+    </div>
+
+
+</div>
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+        <hr>
+        <div class="page-header">
+            <h3 class="reviews" >Fil de commentaires</h3>
+        </div>
+        <div class="comment-tabs">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="active"><a href="#comments" role="tab" data-toggle="tab"><h4 class="reviews text-capitalize">Commentaires</h4></a></li>
+                <li><a href="#add-comment" role="tab" data-toggle="tab"><h4 class="reviews text-capitalize">Ajouter un commentaire</h4></a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="comments">
+                    <ul class="media-list">
+                        <?php
+                            $comments = $project->getComments();
+                            for ($i = 0; $i < count($comments); $i++)
+                            {
+                                $comment = $comments[$i];
+                                require('views/partials/comment_view.phtml');
+                            }
+                        ?>
+                    </ul>
+                </div>
+
+                <?php
+                    if(isset($_SESSION["user"]))
+                        require('views/partials/comment_form.phtml');
+                    else{
+                        echo '<div class="tab-pane" id="add-comment">';
+                        echo 'Connectez-vous afin de pouvoir envoyer des commetaires !';
+                        echo '</div>';
+                    }
+                ?>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/dist/js/project_view.js"></script>

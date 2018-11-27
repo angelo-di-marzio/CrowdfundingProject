@@ -1,0 +1,36 @@
+<div class="col-lg-6">
+    <?php
+        $total = 0;
+        $totalUser = 0;
+        $stars = $project->getStars();
+        for ($i = 0; $i < count($stars); $i++){
+            $star = $stars[$i];
+            if( isset($_SESSION["user"]) && $_SESSION["user"]->getId() == $star->getUser()->getId())
+                $totalUser += $star->getAmount();
+            $total += $star->getAmount();
+        }
+
+        if(isset($_SESSION["user"])){
+            if($totalUser > 0)
+                echo $total.' étoiles ont été données, vous en avez données '.$totalUser;
+            else
+                echo $total.' étoiles ont été données, contribuez à ce projet aussi ! ';
+        }
+        else{
+            echo $total.' étoiles ont été données, contribuez à ce projet aussi ! ';
+        }
+    ?>
+
+</div>
+<div class="col-lg-6">
+    <?php
+        if(isset($_SESSION["user"])){
+            echo '<div class="input-group">';
+            echo '<input id="starsSend" type="number" min="1" class="form-control" placeholder="Etoiles">';
+            echo '<span class="input-group-btn">';
+            echo '<button id="button-like" data-id="'.$project->getId().'" class="btn btn-default sendStar" type="button">Envoyer</button>';
+            echo '</span>';
+            echo '</div>';
+        }
+    ?>
+</div>

@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+        <form id="formProjectEdit" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="title">Titre</label>
+                <input type="text" name="title" class="form-control" id="title" placeholder="title" value="<?php echo $project->getTitle(); ?>">
+                <input type="hidden" name="id" class="form-control" id="id" placeholder="title" value="<?php echo $project->getId(); ?>">
+            </div>
+            <div class="form-group">
+                <label for="">Catégorie</label>
+                <select class="form-control" name="category">
+                    <?php
+                        foreach($categories as $category){
+                            if($project->getCategory()->getId() == $category->getId())
+                                echo '<option value="'.$category->getId().'" selected>'.$category->getName().'</option>';
+                            else
+                                echo '<option value="'.$category->getId().'">'.$category->getName().'</option>';
+                        }
+                    ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="title">Description</label>
+                <textarea name="description" class="form-control" id="description"placeholder="Description"><?php echo $project->getContent(); ?></textarea>
+            </div>
+            <div class="form-group">
+                <label for="title">Nombre d'étoiles requises</label>
+                <input type="number" min="10" name="stars_total" class="form-control" id="stars_total" placeholder="Etoiles" value="<?php echo $project->getMaxstars(); ?>">
+            </div>
+            <div class="Images" id="appendjq">
+               
+                <?php
+                    $max = count($project->getFiles());
+                    
+
+                    for ($i = 0; $i < $max; $i++)
+                    {
+                        echo '<div class="form-group">';
+                            echo '<label for="exampleInputFile">Image '.($i+1).':</label><br/>';
+                            if(count($project->getFiles()) > $i){
+                                echo '<img src="/img/'.$project->getFiles()[$i]->getUrl().'" alt="'.$project->getFiles()[$i]->getUrl().'" class="img-thumbnail" style="max-width:140px; max-height:140px;">';
+                            }
+                            echo '<input type="file" name="image'.$i.'" id="image'.$i.'">';
+                        echo '</div>';
+                    }
+                ?>
+                <div class="form-group" >
+                    <label for="exampleInputFile">Image :</label>
+                    <input type="file" name="image0" id="image0">
+                </div>
+
+            </div>
+            <button type="button" class="btn btn-success addimg" id="addimg">Ajouter image</button>
+            <button type="submit" class="btn btn-success" id="buttonSaveProject">Sauvegarder</button>
+            <button type="button" class="btn btn-danger" id="buttonDeleteProject">Supprimer</button>
+        </form>
+    </div>
+</div>
+<script src="/dist/js/project_edit.js"></script>

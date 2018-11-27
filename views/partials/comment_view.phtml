@@ -1,0 +1,24 @@
+<li class="media">
+    <blockquote>
+      <p><?php echo $comment->getContent(); ?></p>
+      <small>Par <?php echo $comment->getUser()->getUsername(); ?> Le <cite title="Source Title"><?php echo $comment->getDate(); ?></cite></small>
+    
+    <?php
+                if(isset($_SESSION["user"]) && $_SESSION["user"]->getId() == $comment->getUser()->getId())
+                {
+                    echo '<!--<a href="#" data-id="'.$comment->getId().' class="btn btn-primary a-btn-slide-text">
+                    <span class="glyphicon glyphicon-edit" id="editComment" aria-hidden="true"></span>
+                    <span><strong> Modifier</strong></span>            
+                    </a> &nbsp;&nbsp;!-->
+                    <a class="btn btn-danger btn-xs btn-circle" id="deleteComment" href="#" data-id="'.$comment->getId().'"><span class="glyphicon glyphicon-remove"></span> Supprimer</a>';
+                }
+                else
+                {
+                    if(isset($_SESSION["user"]))
+                        echo '<a class="btn btn-danger btn-xs btn-circle report-comment" href="#" data-id="'.$comment->getId().'"><span class="glyphicon glyphicon-share-alt"></span> Signaler</a>';
+                }
+               
+
+            ?>
+    </blockquote>
+</li>

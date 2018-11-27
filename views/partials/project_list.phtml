@@ -1,0 +1,43 @@
+    <div class="row">
+        <div class="col-md-4 col-xs-12 col-md-offset-3">
+            <div class="form-group">
+                <label class="control-label" id="select">Catégorie</label>
+
+                <select class="form-control" onchange="selectOnChange(this);">
+                    <option value="">Toutes</option>
+                    <?php
+
+                        foreach($categories as $category){
+                            //sca : correction si l'url contient la catégorie on sélectionne dans la dropdown la catégorie
+                            if (strpos($_SERVER['REQUEST_URI'], $category->getName()) == true)
+                            {
+                                echo '<option selected="selected" value="'.$category->getName().'">'.$category->getName().'</option>';
+                            }
+                            else
+                            {
+                              echo '<option value="'.$category->getName().'">'.$category->getName().'</option>';
+                            }
+                        }
+                    ?>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <?php
+            if(count($projects) == 0)
+            {
+                echo "<div class=\"col-md-4 col-xs-12 col-md-offset-3\">Il n'y a pas de projets dans cette catégorie.</div>";
+            }
+            else
+            {
+                foreach($projects as $project){
+                    require('views/partials/project_list_element.phtml');
+                }
+
+            }
+
+        ?>
+    </div>
+</div>
+<script src="/dist/js/project_list.js"></script>

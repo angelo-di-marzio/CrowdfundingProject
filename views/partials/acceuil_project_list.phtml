@@ -1,0 +1,60 @@
+
+<div class="col-sm-12">
+    <div class="row">
+        <!-- Jumbotron Header -->
+        <header class="jumbotron hero-spacer">
+            <div class="row text-center">
+                <h1>Bienvenue !</h1>
+                <hr>
+                <p>Nous sommes fiers de vous présenter la toute nouvelle plateforme de crowdfunding wavrien !</p>
+                <hr>
+                <div class="col-md-4 col-xs-12 col-md-offset-1">
+                    <p>Je déborde d'idées !</p>
+
+                    <p><a <?php if( !isset($_SESSION["user"]) ){  echo 'data-toggle="modal" data-target="#loginModal" href="#"'; } else { echo 'href="/creer"';} ?> class="btn btn-success">Creer une campagne</a>
+                    </p>
+                </div>
+                <div class="col-md-4 col-xs-12 col-md-offset-2">
+                    <p>Je veux contribuer !</p>
+
+                    <p><a <?php if( !isset($_SESSION["user"]) ){  echo 'data-toggle="modal" data-target="#loginModal" href="#"'; } else { echo 'href="/projet"';} ?> class="btn btn-success "> Devenir un sponsor </a>
+                    </p>
+                </div>
+            </div>
+        </header>
+    </div>
+    <!--<div class="row">
+        <div class="col-md-4 col-xs-12 col-md-offset-4">
+            <div class="form-group">
+                <label class="control-label" id="select" for="">Catégorie</label>
+
+                <select class="form-control" onchange="selectOnChange(this);">
+                    <option value="">Toutes</option>
+                    <?php
+
+                        /*foreach($categories as $category){
+                            //sca : correction si l'url contient la catégorie on sélectionne dans la dropdown la catégorie
+                            if (strpos($_SERVER['REQUEST_URI'], $category->getName()) == true)
+                            {
+                                echo '<option selected="selected" value="'.$category->getName().'">'.$category->getName().'</option>';
+                            }
+                            else
+                            {
+                              echo '<option value="'.$category->getName().'">'.$category->getName().'</option>';
+                            }
+                        }*/
+                    ?>
+                </select>
+            </div>
+        </div>
+    </div>-->
+    <div class="row">
+        <?php
+            foreach($projects as $project){
+                require('views/partials/project_list_element.phtml');
+            }
+        ?>
+    </div>
+    
+</div>
+<script src="/dist/js/project_list.js"></script>

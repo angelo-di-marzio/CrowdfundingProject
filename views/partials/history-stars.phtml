@@ -1,0 +1,10 @@
+<div class="col-xs-12 col-md-10 col-md-offset-1">
+    <div class="list-group">
+        <?php
+            foreach($stars as $star){
+                echo '<a href="#" class="list-group-item list-button-show" data-id="'.$star->getId().'" data-project-id="'.$star->getProject().'">'.$star->getAmount().' étoiles données</a>';
+            }
+        ?>
+    </div>
+</div>
+<script src="/dist/js/historyStars.js"></script>

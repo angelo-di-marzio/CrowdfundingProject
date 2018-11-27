@@ -1,0 +1,14 @@
+<div class="btn-group btn-group-sm text-center" role="group" aria-label="Large button group">
+    <button id="button-like" data-id="<?php echo $project->getId(); ?>" type="button" data-connected="<?php echo isset($_SESSION["user"]); ?>" class="btn btn-default btn-success upvote">
+
+        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+    </button>
+    <a type="button" class="btn btn-default disabled"><?php echo count($project->getLikes()); ?></a>
+</div>
+<!--
+<div class="btn-group btn-group-lg" role="group" aria-label="Large button group">
+    <a type="button" class="btn btn-default disabled">{{ project.downvotes}}</a>
+        <button data-id="{{project.id}}" type="button" class="btn btn-default btn-danger{% if not is_logged %} disables{% else %} downvote{% endif %}">
+            <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+        </button>
+</div>-->

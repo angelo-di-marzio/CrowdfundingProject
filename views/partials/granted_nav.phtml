@@ -1,0 +1,10 @@
+<li class="dropdown tab_administration">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administration <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <?php
+            if($_SESSION["user"]->getRole() == "ROLE_ADMIN")
+                require("views/partials/admin_nav.phtml");
+            require("views/partials/moderator_nav.phtml");
+        ?>
+    </ul>
+</li>

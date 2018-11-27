@@ -1,0 +1,33 @@
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="waiting_like=false;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="loginModalLabel">Connexion</h5>
+            </div>
+            <div class="modal-body">
+                <form id="formLogin">
+                    <div class="form-group">
+                        <label for="loginUsername">Nom d'utilisateur</label>
+                        <input type="text" name="username" class="form-control" id="loginUsername" aria-describedby="emailHelp" placeholder="Nom d'utilisateur">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Mot de passe</label>
+                        <input type="password" class="form-control" id="loginPassword" placeholder="Password">
+                        <input type="hidden" name="password" class="form-control" id="loginEncodedPassword" placeholder="Password">
+                    </div>
+                </form>
+                <div class="alert alert-danger" id="generalBadMessage" style = "display:none"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="buttonConnect" class="btn btn-default btn-primary">Connexion</button>
+                <button type="button" id="buttonCreateSwitch" class="btn btn-secondary">Créer un compte</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="waiting_like=false;">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/dist/js/login.js"></script>

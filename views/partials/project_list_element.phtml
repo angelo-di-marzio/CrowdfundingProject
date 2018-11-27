@@ -1,0 +1,29 @@
+<div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+        <?php
+            $files = $project->getFiles();
+            if($files != null){
+                echo '<img class="img-responsive img-rounded" style="max-width:95%" src="/img/'.$files[0]->getUrl().'" alt="'.$files[0]->getUrl().'">';
+            }
+        ?>
+        <div class="caption">
+            <?php
+                require('views/partials/project_progress_bar.phtml');
+            ?>
+            <h4 class="text-center"><?php echo $project->getTitle(); ?></h4>
+            <?php 
+            $desc=$project->getContent();
+            if ( strlen($desc) > 220) {
+                $smalldesc=substr($desc,0,220);
+                $smalldesc.=" ...";
+                echo('<p class="text-justify">'.$smalldesc.'</p>');
+            } else {
+                echo('<p class="text-justify">'.$project->getContent().'</p>');
+            }
+            ?>
+            <span class="text-center">
+                <p><a href="/vue/<?php echo $project->getId(); ?>" class="btn btn-success btn-large" role="button">Ouvrir</a></p>
+            </span>
+        </div>
+    </div>
+</div>

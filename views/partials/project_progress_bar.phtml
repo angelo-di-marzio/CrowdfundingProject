@@ -1,0 +1,44 @@
+<div class="progress">
+    <?php
+        $percentage = 0;
+        $ariaValue = 2;
+        $text = "";
+
+        $color = "";
+
+        if($project->getType() == 'idea'){
+            $text = count($project->getLikes()).' sur 10 likes';
+            $percentage = round(count($project->getLikes())*10);
+            $color = " progress-bar-success";
+        } else if ($project->getType() == 'project') {
+            $color = " progress-bar-info";
+
+            $sum = 0;
+            $stars = $project->getStars();
+            foreach($stars as $star){
+                $sum += $star->getAmount();
+            }
+            $percentage = round($sum/$project->getMaxstars()*100);
+            $text = $sum.' sur '.$project->getMaxstars().' étoiles';
+        }
+        else if ($project->getType() == 'canceled'){
+            $text = 'Ce projet est annulé ou expiré.';
+            $percentage = 100;
+            $color = " progress-bar-danger";
+        }else{
+            $text = 'Ce projet est terminé.';
+            $color = "";
+            $percentage = 100;
+        }
+
+        if($percentage > 100)
+            $ariaValue = 100;
+        else if($percentage > 2)
+            $ariaValue = $percentage;
+    ?>
+    <div class="progress progress-striped active">
+        <div class="progress-bar<?php echo $color;?>" role="progressbar" aria-valuenow="<?php echo $ariaValue; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $ariaValue; ?>%;">
+            <?php echo $text; ?>
+        </div>
+    </div>
+</div>

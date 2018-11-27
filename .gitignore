@@ -1,0 +1,7 @@
+dev.php
+prod.php
+/.phpintel
+*.lnk
+.htaccess
+/img
+img/

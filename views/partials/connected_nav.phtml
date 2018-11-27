@@ -1,0 +1,25 @@
+<li class="dropdown" id="tab_profile">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bonjour, <?php echo $_SESSION["user"]->getUsername(); ?> <span class="caret"></span></a>
+    <?php
+
+    if(!$_SESSION["user"]->getActive())
+    {
+    	echo '
+    	<ul class="dropdown-menu">
+        <li><a href="#" id="buttonDisconnect">Déconnexion</a></li>
+    	</ul>';
+    }
+    else
+    {
+    	echo '
+	    <ul class="dropdown-menu">
+	        <li><a href="/profil">Mon profil</a></li>
+	        <li><a href="/historique/etoiles">Historique étoiles</a></li>
+	        <li><a href= "/mes_projet">Mes projets</a></li>
+	        <li role="separator" class="divider"></li>
+	        <li><a href="#" id="buttonDisconnect">Déconnexion</a></li>
+	    </ul>';
+	}
+
+    ?>
+</li>

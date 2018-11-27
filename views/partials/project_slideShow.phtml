@@ -1,0 +1,47 @@
+<div class="col-xs-12 col-sm-10 col-sm-offset-3">
+    <div id="carousel-project" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <?php
+                $files = $project->getFiles();
+                for ($i = 0; $i < count($files); $i++)
+                {
+                    if($i == 0)
+                        echo '<li data-target="#carousel-project" data-slide-to="'.$i.'" class="active"></li>';
+                    else
+                        echo '<li data-target="#carousel-project" data-slide-to="'.$i.'"></li>';
+                }
+            ?>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <?php
+                $files = $project->getFiles();
+                for ($i = 0; $i < count($files); $i++)
+                {
+                    $file = $files[$i];
+                    if($i == 0)
+                        echo '<div class="item active">';
+                    else
+                        echo '<div class="item">';
+
+                    echo '<img class="img-responsive img-rounded" src="/img/'.$file->getUrl().'" alt="/img/'.$file->getUrl().'">';
+                    echo '<div class="carousel-caption">';
+                    echo '</div>';
+                    echo '</div>';
+                }
+            ?>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-project" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Précédent</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-project" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Suivant</span>
+        </a>
+    </div>
+</div>

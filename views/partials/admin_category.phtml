@@ -1,0 +1,63 @@
+<div class="col-xs-12 col-md-10 col-md-offset-1">
+    <div class="list-group">
+        <?php
+            foreach($categories as $category){
+                echo '<a href="#" class="list-group-item list-button-show" data-id="'.$category->getId().'" data-name="'.$category->getName().'">'.$category->getName().'</a>';
+            }
+        ?>
+        <a href="#" class="list-group-item list-group-item-success list-button-add active" data-toggle="modal" data-target="#modalCreateCategory">Ajouter</a>
+    </div>
+</div>
+
+<!-- Modal category details. -->
+<div class="modal fade" id="modalEditCategory" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="registerModalLabel">Modification d'une catégorie</h5>
+            </div>
+            <div class="modal-body">
+                <form id="formEditCategory">
+                    <div class="form-group">
+                        <label for="profileUsername">Nom de la catégorie</label>
+                        <input type="text" name="name" class="form-control" id="categoryEditName" placeholder="Nom de la catégorie">
+                        <input type="hidden" name="id" class="form-control" id="categoryEditId">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="buttonEditDelete">Supprimer</button>
+                <button type="button" class="btn btn-success" id="buttonEditSave">Sauvegarder</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal category creation. -->
+<div class="modal fade" id="modalCreateCategory" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="registerModalLabel">Création d'une catégorie</h5>
+            </div>
+            <div class="modal-body">
+                <form id="formCreateCategory">
+                    <div class="form-group">
+                        <label for="profileUsername">Nom de la catégorie</label>
+                        <input type="text" name="name" class="form-control" id="categoryCreateName" placeholder="Nom de la catégorie">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="buttonCreateCreate">Créer</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/dist/js/category.js"></script>

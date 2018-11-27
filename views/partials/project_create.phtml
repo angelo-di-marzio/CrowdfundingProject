@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+        <form id="formProjectCreate" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="title">Titre</label>
+                <input type="text" name="title" class="form-control" id="title" placeholder="title">
+            </div>
+            <div class="form-group">
+                <label for="">Catégorie</label>
+                <select class="form-control" name="category">
+                    <?php
+                        foreach($categories as $category){
+                            echo '<option value="'.$category->getId().'">'.$category->getName().'</option>';
+                        }
+                    ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="title">Description</label>
+                <textarea name="description" class="form-control" id="description"placeholder="Description"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="title">Nombre d'étoiles requises</label>
+                <input type="number" min="10" name="stars_total" class="form-control" id="stars_total" placeholder="Etoiles">
+            </div>
+            <div class="Images" id="appendjq">
+                <div class="form-group" >
+                    <label for="exampleInputFile">Image :</label>
+                    <input type="file" name="image0" id="image0">
+                </div>
+
+            </div>
+                <button type="button" class="btn btn-success addimg" id="addimg">Ajouter image</button>
+                <button type="submit" class="btn btn-success" id="buttonCreateProject">Créer</button>
+
+        </form>
+    </div>
+</div>
+<script src="/dist/js/project_create.js"></script>
